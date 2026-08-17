@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Oliver Cromwell",
+    "country": "England",
+    "startYear": 1653,
+    "endYear": 1658
+  },
+  {
+    "name": "Mary, Queen of Scots",
+    "country": "Scotland",
+    "startYear": 1542,
+    "endYear": 1567
+  },
+  {
+    "name": "Louis XIV",
+    "country": "France",
+    "startYear": 1643,
+    "endYear": 1715
+  },
+  {
+    "name": "Ferdinand II of Aragon",
+    "country": "Spain",
+    "startYear": 1479,
+    "endYear": 1516
+  },
+  {
+    "name": "Isabella I of Castile",
+    "country": "Spain",
+    "startYear": 1474,
+    "endYear": 1504
+  },
+  {
+    "name": "Robert the Bruce",
+    "country": "Scotland",
+    "startYear": 1306,
+    "endYear": 1329
+  },
+  {
+    "name": "Napoleon",
+    "country": "France",
+    "startYear": 1804,
+    "endYear": 1815
+  }
+]

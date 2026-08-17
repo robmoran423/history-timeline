@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Robert Bellarmine",
+    "birthYear": 1542,
+    "deathYear": 1621
+  },
+  {
+    "name": "Martin Luther",
+    "birthYear": 1483,
+    "deathYear": 1546
+  },
+  {
+    "name": "Leonardo da Vinci",
+    "birthYear": 1452,
+    "deathYear": 1519
+  },
+  {
+    "name": "Michelangelo",
+    "birthYear": 1475,
+    "deathYear": 1564
+  },
+  {
+    "name": "Donatello",
+    "birthYear": 1386,
+    "deathYear": 1466
+  },
+  {
+    "name": "Raphael",
+    "birthYear": 1483,
+    "deathYear": 1520
+  },
+  {
+    "name": "Ignatius of Loyola",
+    "birthYear": 1491,
+    "deathYear": 1556
+  },
+  {
+    "name": "Oliver Cromwell",
+    "birthYear": 1599,
+    "deathYear": 1658
+  },
+  {
+    "name": "William Shakespeare",
+    "birthYear": 1564,
+    "deathYear": 1616
+  },
+  {
+    "name": "Isaac Newton",
+    "birthYear": 1643,
+    "deathYear": 1727
+  },
+  {
+    "name": "William Wallace",
+    "birthYear": 1270,
+    "deathYear": 1305
+  },
+  {
+    "name": "William Penn",
+    "birthYear": 1644,
+    "deathYear": 1718
+  },
+  {
+    "name": "Thomas More",
+    "birthYear": 1478,
+    "deathYear": 1535
+  },
+  {
+    "name": "Napoleon",
+    "birthYear": 1769,
+    "deathYear": 1821
+  },
+  {
+    "name": "George Washington",
+    "birthYear": 1732,
+    "deathYear": 1799
+  }
+]
+

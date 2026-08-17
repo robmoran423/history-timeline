@@ -19,19 +19,31 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Comparator;
 import java.util.List;
 
 public class TimelineApp extends Application {
     private static final double YEAR_WIDTH = 8.0;
-    private static final int ROWS = 5;
+    private static final int ROWS = 13;
     private static final double ROW_HEIGHT = 48;
     private static final double LABEL_WIDTH = 125;
+    private static final int MIN_YEAR = 1060;
+    private static final int MAX_YEAR = 2030;
 
     @Override
     public void start(Stage stage) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
         InputStream is = getClass().getClassLoader().getResourceAsStream("english-monarch.json");
         List<Monarch> monarchs = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
+
+        is = getClass().getClassLoader().getResourceAsStream("other-reigns.json");
+        List<Monarch> otherReigns = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
+
+        is = getClass().getClassLoader().getResourceAsStream("historical-figures.json");
+        List<HistoricalFigure> historicalFigures = mapper.readValue(is, new TypeReference<List<HistoricalFigure>>() {});
+
+        is = getClass().getClassLoader().getResourceAsStream("historical-events.json");
+        List<HistoricalEvent> historicalEvents = mapper.readValue(is, new TypeReference<List<HistoricalEvent>>() {});
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(12));
@@ -46,6 +58,10 @@ public class TimelineApp extends Application {
         header.setPadding(new Insets(0, 0, 12, 0));
 
         Pane timeline = buildTimeline(monarchs);
+        plotEnglishMonarchs(monarchs, timeline);
+        plotOtherReigns(otherReigns, timeline);
+        plotHistoricalFigures(historicalFigures, timeline);
+        plotHistoricalEvents(historicalEvents, timeline);
 
         ScrollPane scroll = new ScrollPane(timeline);
         scroll.setPannable(true);
@@ -62,10 +78,7 @@ public class TimelineApp extends Application {
     }
 
     private Pane buildTimeline(List<Monarch> monarchs) {
-        int minYear = monarchs.stream().mapToInt(Monarch::startYear).min().orElse(1000);
-        int maxYear = monarchs.stream().mapToInt(Monarch::endYear).max().orElse(1500);
-
-        double chartWidth = (maxYear - minYear + 20) * YEAR_WIDTH;
+        double chartWidth = (MAX_YEAR - MIN_YEAR + 20) * YEAR_WIDTH;
         double totalWidth = LABEL_WIDTH + chartWidth;
         double height = 70 + ROWS * ROW_HEIGHT;
 
@@ -74,8 +87,8 @@ public class TimelineApp extends Application {
         canvas.setMinSize(totalWidth, height);
 
         // Year grid and labels.
-        for (int year = (minYear / 10) * 10; year <= maxYear + 10; year += 10) {
-            double x = LABEL_WIDTH + (year - minYear) * YEAR_WIDTH;
+        for (int year = (MIN_YEAR / 10) * 10; year <= MAX_YEAR + 10; year += 10) {
+            double x = LABEL_WIDTH + (year - MIN_YEAR) * YEAR_WIDTH;
             Line line = new Line(x, 30, x, height);
             line.setStroke(Color.LIGHTGRAY);
             canvas.getChildren().add(line);
@@ -102,17 +115,20 @@ public class TimelineApp extends Application {
             canvas.getChildren().add(rowLabel);
         }
 
-        // Automatically reuse rows when possible.
-        int[] rowEnd = new int[ROWS];
-        for (int i = 0; i < ROWS; i++) rowEnd[i] = Integer.MIN_VALUE;
+        return canvas;
+    }
 
+    private static void plotEnglishMonarchs(List<Monarch> monarchs, Pane canvas) {
         int i = 0;
-        for (Monarch monarch : monarchs) {
-            //int row = findAvailableRow(rowEnd, monarch.startYear());
-            int row = i % 3;
-            rowEnd[row] = monarch.endYear();
 
-            double x = LABEL_WIDTH + (monarch.startYear() - minYear) * YEAR_WIDTH;
+        monarchs.sort(Comparator.comparing(Monarch::startYear)
+                .thenComparing(Monarch::endYear)
+                .thenComparing(Monarch::name));
+
+        for (Monarch monarch : monarchs) {
+            int row = i % 3;
+
+            double x = LABEL_WIDTH + (monarch.startYear() - MIN_YEAR) * YEAR_WIDTH;
             double width = Math.max(20, (monarch.endYear() - monarch.startYear()) * YEAR_WIDTH);
             double y = 55 + row * ROW_HEIGHT + 8;
 
@@ -138,16 +154,118 @@ public class TimelineApp extends Application {
             canvas.getChildren().addAll(bar, name);
             i++;
         }
-
-        return canvas;
     }
 
-    private int findAvailableRow(int[] rowEnd, int startYear) {
-        for (int row = 0; row < rowEnd.length; row++) {
-            if (rowEnd[row] <= startYear) return row;
+    private static void plotHistoricalFigures(List<HistoricalFigure> historicalFigures, Pane canvas) {
+        int i = 0;
+
+        historicalFigures.sort(Comparator.comparing(HistoricalFigure::birthYear)
+                .thenComparing(HistoricalFigure::deathYear)
+                .thenComparing(HistoricalFigure::name));
+
+        for (HistoricalFigure historicalFigure : historicalFigures) {
+            int row = (i % 5) + 7;
+
+            double x = LABEL_WIDTH + (historicalFigure.birthYear() - MIN_YEAR) * YEAR_WIDTH;
+            double width = Math.max(20, (historicalFigure.deathYear() - historicalFigure.birthYear()) * YEAR_WIDTH);
+            double y = 55 + row * ROW_HEIGHT + 8;
+
+            Rectangle bar = new Rectangle(x, y, width, 28);
+            bar.setArcWidth(8);
+            bar.setArcHeight(8);
+            bar.setFill(Color.STEELBLUE);
+
+            Label name = new Label(historicalFigure.name());
+            name.setTextFill(Color.WHITE);
+            name.setAlignment(Pos.CENTER_LEFT);
+            name.setPadding(new Insets(0, 6, 0, 6));
+            name.setLayoutX(x);
+            name.setLayoutY(y);
+            name.setPrefHeight(28);
+            name.setPrefWidth(width);
+            name.setStyle("-fx-font-weight: bold;");
+
+            String tooltipText = historicalFigure.name() + " (" + historicalFigure.birthYear() + "–" + historicalFigure.deathYear() + ")";
+            javafx.scene.control.Tooltip.install(bar, new javafx.scene.control.Tooltip(tooltipText));
+            javafx.scene.control.Tooltip.install(name, new javafx.scene.control.Tooltip(tooltipText));
+
+            canvas.getChildren().addAll(bar, name);
+            i++;
         }
-        // Five rows are deliberately fixed for this prototype.
-        return 0;
+    }
+
+
+    private static void plotOtherReigns(List<Monarch> monarchs, Pane canvas) {
+        int i = 0;
+
+        monarchs.sort(Comparator.comparing(Monarch::startYear)
+                .thenComparing(Monarch::endYear)
+                .thenComparing(Monarch::name));
+
+        for (Monarch monarch : monarchs) {
+            int row = (i % 3) + 4;
+
+            double x = LABEL_WIDTH + (monarch.startYear() - MIN_YEAR) * YEAR_WIDTH;
+            double width = Math.max(20, (monarch.endYear() - monarch.startYear()) * YEAR_WIDTH);
+            double y = 55 + row * ROW_HEIGHT + 8;
+
+            Rectangle bar = new Rectangle(x, y, width, 28);
+            bar.setArcWidth(8);
+            bar.setArcHeight(8);
+            bar.setFill(Color.STEELBLUE);
+
+            Label name = new Label(monarch.name());
+            name.setTextFill(Color.WHITE);
+            name.setAlignment(Pos.CENTER_LEFT);
+            name.setPadding(new Insets(0, 6, 0, 6));
+            name.setLayoutX(x);
+            name.setLayoutY(y);
+            name.setPrefHeight(28);
+            name.setPrefWidth(width);
+            name.setStyle("-fx-font-weight: bold;");
+
+            String tooltipText = monarch.name() + " (" + monarch.startYear() + "–" + monarch.endYear() + ")";
+            javafx.scene.control.Tooltip.install(bar, new javafx.scene.control.Tooltip(tooltipText));
+            javafx.scene.control.Tooltip.install(name, new javafx.scene.control.Tooltip(tooltipText));
+
+            canvas.getChildren().addAll(bar, name);
+            i++;
+        }
+    }
+
+    private static void plotHistoricalEvents(List<HistoricalEvent> historicalEvents, Pane canvas) {
+        int i = 0;
+
+        historicalEvents.sort(Comparator.comparing(HistoricalEvent::year)
+                .thenComparing(HistoricalEvent::event));
+
+        for (HistoricalEvent historicalEvent : historicalEvents) {
+            double x = LABEL_WIDTH + (historicalEvent.year() - MIN_YEAR) * YEAR_WIDTH;
+            double width = Math.max(20, (historicalEvent.year() - historicalEvent.year()) * YEAR_WIDTH);
+            double y = 55 + 12 * ROW_HEIGHT + 8;
+
+            Rectangle bar = new Rectangle(x, y, width, 28);
+            bar.setArcWidth(8);
+            bar.setArcHeight(8);
+            bar.setFill(Color.STEELBLUE);
+
+            Label name = new Label(historicalEvent.event());
+            name.setTextFill(Color.WHITE);
+            name.setAlignment(Pos.CENTER_LEFT);
+            name.setPadding(new Insets(0, 6, 0, 6));
+            name.setLayoutX(x);
+            name.setLayoutY(y);
+            name.setPrefHeight(28);
+            name.setPrefWidth(width);
+            name.setStyle("-fx-font-weight: bold;");
+
+            String tooltipText = historicalEvent.event() + " (" + historicalEvent.year() + "–" + historicalEvent.year() + ")";
+            javafx.scene.control.Tooltip.install(bar, new javafx.scene.control.Tooltip(tooltipText));
+            javafx.scene.control.Tooltip.install(name, new javafx.scene.control.Tooltip(tooltipText));
+
+            canvas.getChildren().addAll(bar, name);
+            i++;
+        }
     }
 
     public static void main(String[] args) {
