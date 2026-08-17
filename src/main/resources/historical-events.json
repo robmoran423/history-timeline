@@ -46,5 +46,9 @@
   {
     "event": "Notre-Dame de Paris completed",
     "year": 1260
+  },
+  {
+    "event": "Council of Clermont",
+    "year": 1095
   }
 ]

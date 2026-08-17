@@ -48,10 +48,10 @@ public class TimelineApp extends Application {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(12));
 
-        Label title = new Label("English Monarchs");
+        Label title = new Label("Historical Timeline");
         title.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
-        Label hint = new Label("Five reusable rows • horizontal scroll • drag the scrollbar to explore the timeline");
+        Label hint = new Label("Timeline of English Monarchs, Other Reigns, Historical Figures and Events");
         hint.setStyle("-fx-text-fill: #666;");
 
         VBox header = new VBox(4, title, hint);
@@ -73,7 +73,7 @@ public class TimelineApp extends Application {
         root.setCenter(scroll);
 
         stage.setTitle("Historical Timeline Prototype");
-        stage.setScene(new Scene(root, 1100, 420));
+        stage.setScene(new Scene(root, 1100, 800));
         stage.show();
     }
 
@@ -100,26 +100,34 @@ public class TimelineApp extends Application {
             canvas.getChildren().add(label);
         }
 
-        // Row labels and horizontal guides.
-        for (int row = 0; row < ROWS; row++) {
-            double y = 55 + row * ROW_HEIGHT;
-            Line guide = new Line(0, y + ROW_HEIGHT - 5, totalWidth, y + ROW_HEIGHT - 5);
-            guide.setStroke(Color.web("#dddddd"));
-            canvas.getChildren().add(guide);
-
-            Label rowLabel = new Label("Row " + (row + 1));
-            rowLabel.setLayoutX(8);
-            rowLabel.setLayoutY(y + 12);
-            rowLabel.setPrefWidth(LABEL_WIDTH - 20);
-            rowLabel.setStyle("-fx-text-fill: #777;");
-            canvas.getChildren().add(rowLabel);
-        }
-
         return canvas;
+    }
+
+    private static void addGroupLabel(int row, String label, Pane canvas) {
+        double y = 55 + row * ROW_HEIGHT;
+
+        Label rowLabel = new Label(label);
+        rowLabel.setLayoutX(8);
+        rowLabel.setLayoutY(y + 12);
+        rowLabel.setPrefWidth(LABEL_WIDTH - 20);
+        rowLabel.setStyle("-fx-text-fill: #777;");
+        canvas.getChildren().add(rowLabel);
+    }
+
+    private static void addGroupLine(int row, Pane canvas) {
+        double y = 55 + row * ROW_HEIGHT;
+        double chartWidth = (MAX_YEAR - MIN_YEAR + 20) * YEAR_WIDTH;
+        double totalWidth = LABEL_WIDTH + chartWidth;
+
+        Line guide = new Line(0, y + ROW_HEIGHT - 5, totalWidth, y + ROW_HEIGHT - 5);
+        guide.setStroke(Color.web("#dddddd"));
+        canvas.getChildren().add(guide);
     }
 
     private static void plotEnglishMonarchs(List<Monarch> monarchs, Pane canvas) {
         int i = 0;
+        addGroupLabel(0, "English Monarchs", canvas);
+        addGroupLine(2, canvas);
 
         monarchs.sort(Comparator.comparing(Monarch::startYear)
                 .thenComparing(Monarch::endYear)
@@ -158,13 +166,15 @@ public class TimelineApp extends Application {
 
     private static void plotHistoricalFigures(List<HistoricalFigure> historicalFigures, Pane canvas) {
         int i = 0;
+        addGroupLabel(6, "Historical Figures", canvas);
+        addGroupLine(11, canvas);
 
         historicalFigures.sort(Comparator.comparing(HistoricalFigure::birthYear)
                 .thenComparing(HistoricalFigure::deathYear)
                 .thenComparing(HistoricalFigure::name));
 
         for (HistoricalFigure historicalFigure : historicalFigures) {
-            int row = (i % 5) + 7;
+            int row = (i % 6) + 6;
 
             double x = LABEL_WIDTH + (historicalFigure.birthYear() - MIN_YEAR) * YEAR_WIDTH;
             double width = Math.max(20, (historicalFigure.deathYear() - historicalFigure.birthYear()) * YEAR_WIDTH);
@@ -197,13 +207,15 @@ public class TimelineApp extends Application {
 
     private static void plotOtherReigns(List<Monarch> monarchs, Pane canvas) {
         int i = 0;
+        addGroupLabel(3, "Other Reigns", canvas);
+        addGroupLine(5, canvas);
 
         monarchs.sort(Comparator.comparing(Monarch::startYear)
                 .thenComparing(Monarch::endYear)
                 .thenComparing(Monarch::name));
 
         for (Monarch monarch : monarchs) {
-            int row = (i % 3) + 4;
+            int row = (i % 3) + 3;
 
             double x = LABEL_WIDTH + (monarch.startYear() - MIN_YEAR) * YEAR_WIDTH;
             double width = Math.max(20, (monarch.endYear() - monarch.startYear()) * YEAR_WIDTH);
@@ -235,6 +247,8 @@ public class TimelineApp extends Application {
 
     private static void plotHistoricalEvents(List<HistoricalEvent> historicalEvents, Pane canvas) {
         int i = 0;
+        addGroupLabel(12, "Historical Events", canvas);
+        addGroupLine(12, canvas);
 
         historicalEvents.sort(Comparator.comparing(HistoricalEvent::year)
                 .thenComparing(HistoricalEvent::event));

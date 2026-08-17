@@ -73,6 +73,23 @@
     "name": "George Washington",
     "birthYear": 1732,
     "deathYear": 1799
+  },
+  {
+    "name": "Francis of Assisi",
+    "birthYear": 1181,
+    "deathYear": 1226
+  },
+  {
+    "name": "Joan of Arc",
+    "birthYear": 1412,
+    "deathYear": 1431
+  },
+  {
+    "name": "Vlad the Impaler",
+    "birthYear": 1428,
+    "deathYear": 1477
   }
 ]
+
+
 
