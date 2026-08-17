@@ -1,67 +1,61 @@
 [
   {
     "name": "Oliver Cromwell",
-    "country": "England",
+    "category": "England",
     "startYear": 1653,
     "endYear": 1658
   },
   {
     "name": "Mary, Queen of Scots",
-    "country": "Scotland",
+    "category": "Scotland",
     "startYear": 1542,
     "endYear": 1567
   },
   {
-    "name": "Louis XIV",
-    "country": "France",
-    "startYear": 1643,
-    "endYear": 1715
-  },
-  {
     "name": "Ferdinand II of Aragon",
-    "country": "Spain",
+    "category": "Spain",
     "startYear": 1479,
     "endYear": 1516
   },
   {
     "name": "Isabella I of Castile",
-    "country": "Spain",
+    "category": "Spain",
     "startYear": 1474,
     "endYear": 1504
   },
   {
     "name": "Robert the Bruce",
-    "country": "Scotland",
+    "category": "Scotland",
     "startYear": 1306,
     "endYear": 1329
   },
   {
     "name": "Napoleon",
-    "country": "France",
+    "category": "France",
     "startYear": 1804,
     "endYear": 1815
   },
   {
     "name": "Urban II",
-    "country": "Pope",
+    "category": "Pope",
     "startYear": 1088,
     "endYear": 1099
   },
   {
     "name": "Ivan the Terrible",
-    "country": "Russia",
+    "category": "Russia",
     "startYear": 1547,
     "endYear": 1584
   },
   {
     "name": "Peter the Great",
-    "country": "Russia",
+    "category": "Russia",
     "startYear": 1682,
     "endYear": 1725
   },
   {
     "name": "Nicholas II",
-    "country": "Russia",
+    "category": "Russia",
     "startYear": 1894,
     "endYear": 1917
   }

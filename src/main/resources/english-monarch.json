@@ -2,211 +2,259 @@
   {
     "name": "William I",
     "startYear": 1066,
-    "endYear": 1087
+    "endYear": 1087,
+    "category": "Normandy"
   },
   {
     "name": "William II",
     "startYear": 1087,
-    "endYear": 1100
+    "endYear": 1100,
+    "category": "Normandy"
   },
   {
     "name": "Henry I",
     "startYear": 1100,
-    "endYear": 1135
+    "endYear": 1135,
+    "category": "Normandy"
   },
   {
     "name": "Stephen",
     "startYear": 1135,
-    "endYear": 1154
+    "endYear": 1154,
+    "category": "Blois"
   },
   {
     "name": "Henry II",
     "startYear": 1154,
-    "endYear": 1189
+    "endYear": 1189,
+    "category": "Plantagenet-Angevin"
   },
   {
     "name": "Richard I",
     "startYear": 1189,
-    "endYear": 1199
+    "endYear": 1199,
+    "category": "Plantagenet-Angevin"
   },
   {
     "name": "John",
     "startYear": 1199,
-    "endYear": 1216
+    "endYear": 1216,
+    "category": "Plantagenet-Angevin"
   },
   {
     "name": "Henry III",
     "startYear": 1216,
-    "endYear": 1272
+    "endYear": 1272,
+    "category": "Plantagenet"
   },
   {
     "name": "Edward I",
     "startYear": 1272,
-    "endYear": 1307
+    "endYear": 1307,
+    "category": "Plantagenet"
   },
   {
     "name": "Edward II",
     "startYear": 1307,
-    "endYear": 1327
+    "endYear": 1327,
+    "category": "Plantagenet"
   },
   {
     "name": "Edward III",
     "startYear": 1327,
-    "endYear": 1377
+    "endYear": 1377,
+    "category": "Plantagenet"
   },
   {
     "name": "Richard II",
     "startYear": 1377,
-    "endYear": 1399
+    "endYear": 1399,
+    "category": "Plantagenet"
   },
   {
     "name": "Henry IV",
     "startYear": 1399,
-    "endYear": 1413
+    "endYear": 1413,
+    "category": "Lancaster"
   },
   {
     "name": "Henry V",
     "startYear": 1413,
-    "endYear": 1422
+    "endYear": 1422,
+    "category": "Lancaster"
   },
   {
     "name": "Henry VI",
     "startYear": 1422,
-    "endYear": 1461
+    "endYear": 1461,
+    "category": "Lancaster"
   },
   {
     "name": "Edward IV",
     "startYear": 1461,
-    "endYear": 1483
+    "endYear": 1483,
+    "category": "York"
   },
   {
     "name": "Edward V",
     "startYear": 1483,
-    "endYear": 1483
+    "endYear": 1483,
+    "category": "York"
   },
   {
     "name": "Richard III",
     "startYear": 1483,
-    "endYear": 1485
+    "endYear": 1485,
+    "category": "York"
   },
   {
     "name": "Henry VII",
     "startYear": 1485,
-    "endYear": 1509
+    "endYear": 1509,
+    "category": "Tudor"
   },
   {
     "name": "Henry VIII",
     "startYear": 1509,
-    "endYear": 1547
+    "endYear": 1547,
+    "category": "Tudor"
   },
   {
     "name": "Edward VI",
     "startYear": 1547,
-    "endYear": 1553
+    "endYear": 1553,
+    "category": "Tudor"
   },
   {
     "name": "Mary I",
     "startYear": 1553,
-    "endYear": 1558
+    "endYear": 1558,
+    "category": "Tudor"
   },
   {
     "name": "Elizabeth I",
     "startYear": 1558,
-    "endYear": 1603
+    "endYear": 1603,
+    "category": "Tudor"
   },
   {
     "name": "James I",
     "startYear": 1603,
-    "endYear": 1625
+    "endYear": 1625,
+    "category": "Stuart"
   },
   {
     "name": "Charles I",
     "startYear": 1625,
-    "endYear": 1649
+    "endYear": 1649,
+    "category": "Stuart"
   },
   {
     "name": "Charles II",
     "startYear": 1660,
-    "endYear": 1685
+    "endYear": 1685,
+    "category": "Stuart"
   },
   {
     "name": "James II",
     "startYear": 1685,
-    "endYear": 1688
+    "endYear": 1688,
+    "category": "Stuart"
   },
   {
     "name": "William III",
     "startYear": 1689,
-    "endYear": 1702
+    "endYear": 1702,
+    "category": "Orange-Nassau"
   },
   {
     "name": "Mary II",
     "startYear": 1689,
-    "endYear": 1694
+    "endYear": 1694,
+    "category": "Stuart"
   },
   {
     "name": "Anne",
     "startYear": 1702,
-    "endYear": 1707
+    "endYear": 1714,
+    "category": "Stuart"
   },
   {
     "name": "George I",
     "startYear": 1714,
-    "endYear": 1727
+    "endYear": 1727,
+    "category": "Hanover"
   },
   {
     "name": "George II",
     "startYear": 1727,
-    "endYear": 1760
+    "endYear": 1760,
+    "category": "Hanover"
   },
   {
     "name": "George III",
     "startYear": 1760,
-    "endYear": 1820
+    "endYear": 1820,
+    "category": "Hanover"
   },
   {
     "name": "George IV",
     "startYear": 1820,
-    "endYear": 1830
+    "endYear": 1830,
+    "category": "Hanover"
   },
   {
     "name": "William IV",
     "startYear": 1830,
-    "endYear": 1837
+    "endYear": 1837,
+    "category": "Hanover"
   },
   {
     "name": "Victoria",
     "startYear": 1837,
-    "endYear": 1901
+    "endYear": 1901,
+    "category": "Hanover"
   },
   {
     "name": "Edward VII",
     "startYear": 1901,
-    "endYear": 1910
+    "endYear": 1910,
+    "category": "Saxe-Coburg and Gotha"
   },
   {
     "name": "George V",
     "startYear": 1910,
-    "endYear": 1936
+    "endYear": 1936,
+    "category": "Windsor"
   },
   {
     "name": "Edward VIII",
     "startYear": 1936,
-    "endYear": 1936
+    "endYear": 1936,
+    "category": "Windsor"
   },
   {
     "name": "George VI",
     "startYear": 1936,
-    "endYear": 1952
+    "endYear": 1952,
+    "category": "Windsor"
   },
   {
     "name": "Elizabeth II",
     "startYear": 1952,
-    "endYear": 2022
+    "endYear": 2022,
+    "category": "Windsor"
   },
   {
     "name": "Charles III",
     "startYear": 2022,
-    "endYear": 2026
+    "endYear": 2026,
+    "category": "Windsor"
+  },
+  {
+    "name": "Edward the Confessor",
+    "startYear": 1042,
+    "endYear": 1066,
+    "category": "Wessex"
   }
 ]

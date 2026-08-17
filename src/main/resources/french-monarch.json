@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Philip I",
+    "startYear": 1060,
+    "endYear": 1108,
+    "category": "Capet"
+  },
+  {
+    "name": "Louis VI",
+    "startYear": 1108,
+    "endYear": 1137,
+    "category": "Capet"
+  },
+  {
+    "name": "Louis VII",
+    "startYear": 1137,
+    "endYear": 1180,
+    "category": "Capet"
+  },
+  {
+    "name": "Philip II",
+    "startYear": 1180,
+    "endYear": 1223,
+    "category": "Capet"
+  },
+  {
+    "name": "Louis VIII",
+    "startYear": 1223,
+    "endYear": 1226,
+    "category": "Capet"
+  },
+  {
+    "name": "Louis IX",
+    "startYear": 1226,
+    "endYear": 1270,
+    "category": "Capet"
+  },
+  {
+    "name": "Philip III",
+    "startYear": 1270,
+    "endYear": 1285,
+    "category": "Capet"
+  },
+  {
+    "name": "Philip IV",
+    "startYear": 1285,
+    "endYear": 1314,
+    "category": "Capet"
+  },
+  {
+    "name": "Louis X",
+    "startYear": 1314,
+    "endYear": 1316,
+    "category": "Capet"
+  },
+  {
+    "name": "John I",
+    "startYear": 1316,
+    "endYear": 1316,
+    "category": "Capet"
+  },
+  {
+    "name": "Philip V",
+    "startYear": 1316,
+    "endYear": 1322,
+    "category": "Capet"
+  },
+  {
+    "name": "Charles IV",
+    "startYear": 1322,
+    "endYear": 1328,
+    "category": "Capet"
+  },
+  {
+    "name": "Philip VI",
+    "startYear": 1328,
+    "endYear": 1350,
+    "category": "Valois"
+  },
+  {
+    "name": "John II",
+    "startYear": 1350,
+    "endYear": 1364,
+    "category": "Valois"
+  },
+  {
+    "name": "Charles V",
+    "startYear": 1364,
+    "endYear": 1380,
+    "category": "Valois"
+  },
+  {
+    "name": "Charles VI",
+    "startYear": 1380,
+    "endYear": 1422,
+    "category": "Valois"
+  },
+  {
+    "name": "Charles VII",
+    "startYear": 1422,
+    "endYear": 1461,
+    "category": "Valois"
+  },
+  {
+    "name": "Louis XI",
+    "startYear": 1461,
+    "endYear": 1483,
+    "category": "Valois"
+  },
+  {
+    "name": "Charles VIII",
+    "startYear": 1483,
+    "endYear": 1498,
+    "category": "Valois"
+  },
+  {
+    "name": "Louis XII",
+    "startYear": 1498,
+    "endYear": 1515,
+    "category": "Valois-Orléans"
+  },
+  {
+    "name": "Francis I",
+    "startYear": 1515,
+    "endYear": 1547,
+    "category": "Valois-Angoulême"
+  },
+  {
+    "name": "Henry II",
+    "startYear": 1547,
+    "endYear": 1559,
+    "category": "Valois-Angoulême"
+  },
+  {
+    "name": "Francis II",
+    "startYear": 1559,
+    "endYear": 1560,
+    "category": "Valois-Angoulême"
+  },
+  {
+    "name": "Charles IX",
+    "startYear": 1560,
+    "endYear": 1574,
+    "category": "Valois-Angoulême"
+  },
+  {
+    "name": "Henry III",
+    "startYear": 1574,
+    "endYear": 1589,
+    "category": "Valois-Angoulême"
+  },
+  {
+    "name": "Henry IV",
+    "startYear": 1589,
+    "endYear": 1610,
+    "category": "Bourbon"
+  },
+  {
+    "name": "Louis XIII",
+    "startYear": 1610,
+    "endYear": 1643,
+    "category": "Bourbon"
+  },
+  {
+    "name": "Louis XIV",
+    "startYear": 1643,
+    "endYear": 1715,
+    "category": "Bourbon"
+  },
+  {
+    "name": "Louis XV",
+    "startYear": 1715,
+    "endYear": 1774,
+    "category": "Bourbon"
+  },
+  {
+    "name": "Louis XVI",
+    "startYear": 1774,
+    "endYear": 1792,
+    "category": "Bourbon"
+  }
+]

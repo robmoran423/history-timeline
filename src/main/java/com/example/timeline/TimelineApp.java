@@ -27,14 +27,17 @@ public class TimelineApp extends Application {
     private static final int ROWS = 13;
     private static final double ROW_HEIGHT = 48;
     private static final double LABEL_WIDTH = 125;
-    private static final int MIN_YEAR = 1060;
+    private static final int MIN_YEAR = 1000;
     private static final int MAX_YEAR = 2030;
 
     @Override
     public void start(Stage stage) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
         InputStream is = getClass().getClassLoader().getResourceAsStream("english-monarch.json");
-        List<Monarch> monarchs = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
+        List<Monarch> englishMonarchs = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
+
+        is = getClass().getClassLoader().getResourceAsStream("french-monarch.json");
+        List<Monarch> frenchMonarchs = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
 
         is = getClass().getClassLoader().getResourceAsStream("other-reigns.json");
         List<Monarch> otherReigns = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
@@ -57,9 +60,11 @@ public class TimelineApp extends Application {
         VBox header = new VBox(4, title, hint);
         header.setPadding(new Insets(0, 0, 12, 0));
 
-        Pane timeline = buildTimeline(monarchs);
-        plotEnglishMonarchs(monarchs, timeline);
-        plotOtherReigns(otherReigns, timeline);
+        Pane timeline = buildTimeline();
+
+        plotMonarchs(englishMonarchs, "English Monarchs", 0, 2,timeline);
+        plotMonarchs(frenchMonarchs, "French Monarchs", 2, 2,timeline);
+        //plotOtherReigns(otherReigns, timeline);
         plotHistoricalFigures(historicalFigures, timeline);
         plotHistoricalEvents(historicalEvents, timeline);
 
@@ -77,7 +82,7 @@ public class TimelineApp extends Application {
         stage.show();
     }
 
-    private Pane buildTimeline(List<Monarch> monarchs) {
+    private Pane buildTimeline() {
         double chartWidth = (MAX_YEAR - MIN_YEAR + 20) * YEAR_WIDTH;
         double totalWidth = LABEL_WIDTH + chartWidth;
         double height = 70 + ROWS * ROW_HEIGHT;
@@ -124,17 +129,22 @@ public class TimelineApp extends Application {
         canvas.getChildren().add(guide);
     }
 
-    private static void plotEnglishMonarchs(List<Monarch> monarchs, Pane canvas) {
-        int i = 0;
-        addGroupLabel(0, "English Monarchs", canvas);
-        addGroupLine(2, canvas);
+    private static void plotMonarchs(List<Monarch> monarchs, String label, int startRow, int rowCount, Pane canvas) {
+        int year = 0;
+
+        addGroupLabel(startRow, label, canvas);
+        addGroupLine(startRow + rowCount - 1, canvas);
 
         monarchs.sort(Comparator.comparing(Monarch::startYear)
                 .thenComparing(Monarch::endYear)
                 .thenComparing(Monarch::name));
 
         for (Monarch monarch : monarchs) {
-            int row = i % 3;
+            int row = startRow;
+            if (year == monarch.startYear()) {
+                row = row + 1;
+            }
+            year = monarch.startYear();
 
             double x = LABEL_WIDTH + (monarch.startYear() - MIN_YEAR) * YEAR_WIDTH;
             double width = Math.max(20, (monarch.endYear() - monarch.startYear()) * YEAR_WIDTH);
@@ -155,12 +165,11 @@ public class TimelineApp extends Application {
             name.setPrefWidth(width);
             name.setStyle("-fx-font-weight: bold;");
 
-            String tooltipText = monarch.name() + " (" + monarch.startYear() + "–" + monarch.endYear() + ")";
+            String tooltipText = monarch.name() + " (" + monarch.startYear() + "–" + monarch.endYear() + ") - " + monarch.category();
             javafx.scene.control.Tooltip.install(bar, new javafx.scene.control.Tooltip(tooltipText));
             javafx.scene.control.Tooltip.install(name, new javafx.scene.control.Tooltip(tooltipText));
 
             canvas.getChildren().addAll(bar, name);
-            i++;
         }
     }
 
