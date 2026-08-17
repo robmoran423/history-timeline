@@ -46,5 +46,23 @@
     "country": "Pope",
     "startYear": 1088,
     "endYear": 1099
+  },
+  {
+    "name": "Ivan the Terrible",
+    "country": "Russia",
+    "startYear": 1547,
+    "endYear": 1584
+  },
+  {
+    "name": "Peter the Great",
+    "country": "Russia",
+    "startYear": 1682,
+    "endYear": 1725
+  },
+  {
+    "name": "Nicholas II",
+    "country": "Russia",
+    "startYear": 1894,
+    "endYear": 1917
   }
 ]

@@ -50,5 +50,15 @@
   {
     "event": "Council of Clermont",
     "year": 1095
+  },
+  {
+    "event": "Assassination of Archduke Franz Ferdinand",
+    "year": 1914
+  },
+  {
+    "event": "Pearl Harbor",
+    "year": 1941
   }
+
+
 ]
