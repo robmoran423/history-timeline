@@ -1,5 +1,7 @@
 package com.example.timeline;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,6 +17,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class TimelineApp extends Application {
@@ -24,52 +28,10 @@ public class TimelineApp extends Application {
     private static final double LABEL_WIDTH = 125;
 
     @Override
-    public void start(Stage stage) {
-        List<Monarch> monarchs = List.of(
-                new Monarch("William I", 1066, 1087),
-                new Monarch("William II", 1087, 1100),
-                new Monarch("Henry I", 1100, 1135),
-            new Monarch("Stephen", 1135, 1154),
-            new Monarch("Henry II", 1154, 1189),
-            new Monarch("Richard I", 1189, 1199),
-            new Monarch("John", 1199, 1216),
-            new Monarch("Henry III", 1216, 1272),
-            new Monarch("Edward I", 1272, 1307),
-            new Monarch("Edward II", 1307, 1327),
-            new Monarch("Edward III", 1327, 1377),
-            new Monarch("Richard II", 1377, 1399),
-            new Monarch("Henry IV", 1399, 1413),
-            new Monarch("Henry V", 1413, 1422),
-            new Monarch("Henry VI", 1422, 1461),
-                new Monarch("Edward IV", 1461, 1483),
-                new Monarch("Edward V", 1483, 1483),
-                new Monarch("Richard III", 1483, 1485),
-                new Monarch("Henry VII", 1485, 1509),
-                new Monarch("Henry VIII", 1509, 1547),
-                new Monarch("Edward VI", 1547, 1553),
-                new Monarch("Mary I", 1553, 1558),
-                new Monarch("Elizabeth I", 1558, 1603),
-                new Monarch("James I", 1603, 1625),
-                new Monarch("Charles I", 1625, 1649),
-                new Monarch("Charles II", 1660, 1685),
-                new Monarch("James II", 1685, 1688),
-                new Monarch("William III", 1689, 1702),
-                new Monarch("Mary II", 1689, 1694),
-                new Monarch("Anne", 1702, 1707),
-                new Monarch("George I", 1714, 1727),
-                new Monarch("George II", 1727, 1760),
-                new Monarch("George III", 1760, 1820),
-                new Monarch("George IV", 1820, 1830),
-                new Monarch("William IV", 1830, 1837),
-                new Monarch("Victoria", 1837, 1901),
-
-                new Monarch("Edward VII", 1901, 1910),
-                new Monarch("George V", 1910, 1936),
-                new Monarch("Edward VIII", 1936, 1936),
-                new Monarch("George VI", 1936, 1952),
-                new Monarch("Elizabeth II", 1952, 2022),
-                new Monarch("Charles III", 2022, 2026)
-        );
+    public void start(Stage stage) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        InputStream is = getClass().getClassLoader().getResourceAsStream("english-monarch.json");
+        List<Monarch> monarchs = mapper.readValue(is, new TypeReference<List<Monarch>>() {});
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(12));

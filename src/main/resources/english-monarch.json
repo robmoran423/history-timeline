@@ -1,0 +1,212 @@
+[
+  {
+    "name": "William I",
+    "startYear": 1066,
+    "endYear": 1087
+  },
+  {
+    "name": "William II",
+    "startYear": 1087,
+    "endYear": 1100
+  },
+  {
+    "name": "Henry I",
+    "startYear": 1100,
+    "endYear": 1135
+  },
+  {
+    "name": "Stephen",
+    "startYear": 1135,
+    "endYear": 1154
+  },
+  {
+    "name": "Henry II",
+    "startYear": 1154,
+    "endYear": 1189
+  },
+  {
+    "name": "Richard I",
+    "startYear": 1189,
+    "endYear": 1199
+  },
+  {
+    "name": "John",
+    "startYear": 1199,
+    "endYear": 1216
+  },
+  {
+    "name": "Henry III",
+    "startYear": 1216,
+    "endYear": 1272
+  },
+  {
+    "name": "Edward I",
+    "startYear": 1272,
+    "endYear": 1307
+  },
+  {
+    "name": "Edward II",
+    "startYear": 1307,
+    "endYear": 1327
+  },
+  {
+    "name": "Edward III",
+    "startYear": 1327,
+    "endYear": 1377
+  },
+  {
+    "name": "Richard II",
+    "startYear": 1377,
+    "endYear": 1399
+  },
+  {
+    "name": "Henry IV",
+    "startYear": 1399,
+    "endYear": 1413
+  },
+  {
+    "name": "Henry V",
+    "startYear": 1413,
+    "endYear": 1422
+  },
+  {
+    "name": "Henry VI",
+    "startYear": 1422,
+    "endYear": 1461
+  },
+  {
+    "name": "Edward IV",
+    "startYear": 1461,
+    "endYear": 1483
+  },
+  {
+    "name": "Edward V",
+    "startYear": 1483,
+    "endYear": 1483
+  },
+  {
+    "name": "Richard III",
+    "startYear": 1483,
+    "endYear": 1485
+  },
+  {
+    "name": "Henry VII",
+    "startYear": 1485,
+    "endYear": 1509
+  },
+  {
+    "name": "Henry VIII",
+    "startYear": 1509,
+    "endYear": 1547
+  },
+  {
+    "name": "Edward VI",
+    "startYear": 1547,
+    "endYear": 1553
+  },
+  {
+    "name": "Mary I",
+    "startYear": 1553,
+    "endYear": 1558
+  },
+  {
+    "name": "Elizabeth I",
+    "startYear": 1558,
+    "endYear": 1603
+  },
+  {
+    "name": "James I",
+    "startYear": 1603,
+    "endYear": 1625
+  },
+  {
+    "name": "Charles I",
+    "startYear": 1625,
+    "endYear": 1649
+  },
+  {
+    "name": "Charles II",
+    "startYear": 1660,
+    "endYear": 1685
+  },
+  {
+    "name": "James II",
+    "startYear": 1685,
+    "endYear": 1688
+  },
+  {
+    "name": "William III",
+    "startYear": 1689,
+    "endYear": 1702
+  },
+  {
+    "name": "Mary II",
+    "startYear": 1689,
+    "endYear": 1694
+  },
+  {
+    "name": "Anne",
+    "startYear": 1702,
+    "endYear": 1707
+  },
+  {
+    "name": "George I",
+    "startYear": 1714,
+    "endYear": 1727
+  },
+  {
+    "name": "George II",
+    "startYear": 1727,
+    "endYear": 1760
+  },
+  {
+    "name": "George III",
+    "startYear": 1760,
+    "endYear": 1820
+  },
+  {
+    "name": "George IV",
+    "startYear": 1820,
+    "endYear": 1830
+  },
+  {
+    "name": "William IV",
+    "startYear": 1830,
+    "endYear": 1837
+  },
+  {
+    "name": "Victoria",
+    "startYear": 1837,
+    "endYear": 1901
+  },
+  {
+    "name": "Edward VII",
+    "startYear": 1901,
+    "endYear": 1910
+  },
+  {
+    "name": "George V",
+    "startYear": 1910,
+    "endYear": 1936
+  },
+  {
+    "name": "Edward VIII",
+    "startYear": 1936,
+    "endYear": 1936
+  },
+  {
+    "name": "George VI",
+    "startYear": 1936,
+    "endYear": 1952
+  },
+  {
+    "name": "Elizabeth II",
+    "startYear": 1952,
+    "endYear": 2022
+  },
+  {
+    "name": "Charles III",
+    "startYear": 2022,
+    "endYear": 2026
+  }
+]
