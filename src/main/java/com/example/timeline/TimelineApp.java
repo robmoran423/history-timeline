@@ -36,17 +36,17 @@ public class TimelineApp extends Application {
         InputStream is = getClass().getClassLoader().getResourceAsStream("english-monarch.json");
         List<Reign> englishMonarchs = mapper.readValue(is, new TypeReference<List<Reign>>() {});
 
-        //is = getClass().getClassLoader().getResourceAsStream("french-monarch.json");
-        //List<Reign> frenchMonarchs = mapper.readValue(is, new TypeReference<List<Reign>>() {});
+        is = getClass().getClassLoader().getResourceAsStream("french-monarch.json");
+        List<Reign> frenchMonarchs = mapper.readValue(is, new TypeReference<List<Reign>>() {});
 
-        //is = getClass().getClassLoader().getResourceAsStream("other-reigns.json");
-        //List<Reign> otherReigns = mapper.readValue(is, new TypeReference<List<Reign>>() {});
+        is = getClass().getClassLoader().getResourceAsStream("other-reigns.json");
+        List<Reign> otherReigns = mapper.readValue(is, new TypeReference<List<Reign>>() {});
 
-        //is = getClass().getClassLoader().getResourceAsStream("historical-figures.json");
-        //List<HistoricalFigure> historicalFigures = mapper.readValue(is, new TypeReference<List<HistoricalFigure>>() {});
+        is = getClass().getClassLoader().getResourceAsStream("historical-figures.json");
+        List<HistoricalFigure> historicalFigures = mapper.readValue(is, new TypeReference<List<HistoricalFigure>>() {});
 
-        //is = getClass().getClassLoader().getResourceAsStream("historical-events.json");
-        //List<HistoricalEvent> historicalEvents = mapper.readValue(is, new TypeReference<List<HistoricalEvent>>() {});
+        is = getClass().getClassLoader().getResourceAsStream("historical-events.json");
+        List<HistoricalEvent> historicalEvents = mapper.readValue(is, new TypeReference<List<HistoricalEvent>>() {});
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(12));
@@ -63,11 +63,11 @@ public class TimelineApp extends Application {
         Pane timeline = buildTimeline();
         Pane labelPane = new Pane();
 
-        plotMonarchs(englishMonarchs, "English Monarchs", 0, 2,timeline, labelPane);
-        //plotMonarchs(frenchMonarchs, "French Monarchs", 2, 2,timeline, labelPane);
-        //plotOtherReigns(otherReigns, timeline);
-        //plotHistoricalFigures(historicalFigures, timeline);
-        //plotHistoricalEvents(historicalEvents, timeline);
+        plotMonarchs(englishMonarchs, Timeline.ENGLISH,timeline, labelPane);
+        plotMonarchs(frenchMonarchs, Timeline.FRENCH,timeline, labelPane);
+        plotOtherReigns(otherReigns, timeline, labelPane);
+        plotHistoricalFigures(historicalFigures, timeline, labelPane);
+        plotHistoricalEvents(historicalEvents, timeline, labelPane);
 
         ScrollPane scroll = new ScrollPane(timeline);
         scroll.setPannable(true);
@@ -130,18 +130,18 @@ public class TimelineApp extends Application {
         canvas.getChildren().add(guide);
     }
 
-    private static void plotMonarchs(List<Reign> reigns, String label, int startRow, int rowCount, Pane canvas, Pane labelPane) {
+    private static void plotMonarchs(List<Reign> reigns, Timeline timeline, Pane canvas, Pane labelPane) {
         int year = 0;
 
-        addGroupLabel(startRow, label, labelPane);
-        addGroupLine(startRow + rowCount - 1, canvas);
+        addGroupLabel(timeline.getStartRow(), timeline.getType(), labelPane);
+        addGroupLine(timeline.getStartRow() + timeline.getRowCount() - 1, canvas);
 
         reigns.sort(Comparator.comparing(Reign::startYear)
                 .thenComparing(Reign::endYear)
                 .thenComparing(Reign::name));
 
         for (Reign reign : reigns) {
-            int row = startRow;
+            int row = timeline.getStartRow();
             if (year == reign.startYear()) {
                 row = row + 1;
             }
@@ -154,8 +154,7 @@ public class TimelineApp extends Application {
             Rectangle bar = new Rectangle(x, y, width, 28);
             bar.setArcWidth(8);
             bar.setArcHeight(8);
-            bar.setFill(Color.STEELBLUE);
-            //bar.setFill(reign.category().getColor());
+            bar.setFill(timeline.getColor());
 
             Label name = new Label(reign.name());
             name.setTextFill(Color.WHITE);
@@ -175,9 +174,49 @@ public class TimelineApp extends Application {
         }
     }
 
-    private static void plotHistoricalFigures(List<HistoricalFigure> historicalFigures, Pane canvas) {
+    private static void plotOtherReigns(List<Reign> reigns, Pane canvas, Pane labelPane) {
         int i = 0;
-        //addGroupLabel(6, "Historical Figures", canvas);
+        addGroupLabel(4, "Other Reigns", labelPane);
+        addGroupLine(6, canvas);
+
+        reigns.sort(Comparator.comparing(Reign::startYear)
+                .thenComparing(Reign::endYear)
+                .thenComparing(Reign::name));
+
+        for (Reign reign : reigns) {
+            int row = (i % 3) + 4;
+
+            double x = LABEL_WIDTH + (reign.startYear() - MIN_YEAR) * YEAR_WIDTH;
+            double width = Math.max(20, (reign.endYear() - reign.startYear()) * YEAR_WIDTH);
+            double y = 55 + row * ROW_HEIGHT + 8;
+
+            Rectangle bar = new Rectangle(x, y, width, 28);
+            bar.setArcWidth(8);
+            bar.setArcHeight(8);
+            bar.setFill(Color.ROYALBLUE);
+
+            Label name = new Label(reign.name());
+            name.setTextFill(Color.WHITE);
+            name.setAlignment(Pos.CENTER_LEFT);
+            name.setPadding(new Insets(0, 6, 0, 6));
+            name.setLayoutX(x);
+            name.setLayoutY(y);
+            name.setPrefHeight(28);
+            name.setPrefWidth(width);
+            name.setStyle("-fx-font-weight: bold;");
+
+            String tooltipText = reign.name() + " (" + reign.startYear() + "–" + reign.endYear() + ")";
+            javafx.scene.control.Tooltip.install(bar, new javafx.scene.control.Tooltip(tooltipText));
+            javafx.scene.control.Tooltip.install(name, new javafx.scene.control.Tooltip(tooltipText));
+
+            canvas.getChildren().addAll(bar, name);
+            i++;
+        }
+    }
+
+    private static void plotHistoricalFigures(List<HistoricalFigure> historicalFigures, Pane canvas, Pane labelPane) {
+        int i = 0;
+        addGroupLabel(7, "Historical Figures", labelPane);
         addGroupLine(11, canvas);
 
         historicalFigures.sort(Comparator.comparing(HistoricalFigure::birthYear)
@@ -185,7 +224,7 @@ public class TimelineApp extends Application {
                 .thenComparing(HistoricalFigure::name));
 
         for (HistoricalFigure historicalFigure : historicalFigures) {
-            int row = (i % 6) + 6;
+            int row = (i % 5) + 7;
 
             double x = LABEL_WIDTH + (historicalFigure.birthYear() - MIN_YEAR) * YEAR_WIDTH;
             double width = Math.max(20, (historicalFigure.deathYear() - historicalFigure.birthYear()) * YEAR_WIDTH);
@@ -194,7 +233,7 @@ public class TimelineApp extends Application {
             Rectangle bar = new Rectangle(x, y, width, 28);
             bar.setArcWidth(8);
             bar.setArcHeight(8);
-            bar.setFill(Color.STEELBLUE);
+            bar.setFill(Color.GREEN);
 
             Label name = new Label(historicalFigure.name());
             name.setTextFill(Color.WHITE);
@@ -216,49 +255,9 @@ public class TimelineApp extends Application {
     }
 
 
-    private static void plotOtherReigns(List<Reign> reigns, Pane canvas) {
+    private static void plotHistoricalEvents(List<HistoricalEvent> historicalEvents, Pane canvas, Pane labelPane) {
         int i = 0;
-        //addGroupLabel(3, "Other Reigns", canvas);
-        addGroupLine(5, canvas);
-
-        reigns.sort(Comparator.comparing(Reign::startYear)
-                .thenComparing(Reign::endYear)
-                .thenComparing(Reign::name));
-
-        for (Reign reign : reigns) {
-            int row = (i % 3) + 3;
-
-            double x = LABEL_WIDTH + (reign.startYear() - MIN_YEAR) * YEAR_WIDTH;
-            double width = Math.max(20, (reign.endYear() - reign.startYear()) * YEAR_WIDTH);
-            double y = 55 + row * ROW_HEIGHT + 8;
-
-            Rectangle bar = new Rectangle(x, y, width, 28);
-            bar.setArcWidth(8);
-            bar.setArcHeight(8);
-            bar.setFill(Color.STEELBLUE);
-
-            Label name = new Label(reign.name());
-            name.setTextFill(Color.WHITE);
-            name.setAlignment(Pos.CENTER_LEFT);
-            name.setPadding(new Insets(0, 6, 0, 6));
-            name.setLayoutX(x);
-            name.setLayoutY(y);
-            name.setPrefHeight(28);
-            name.setPrefWidth(width);
-            name.setStyle("-fx-font-weight: bold;");
-
-            String tooltipText = reign.name() + " (" + reign.startYear() + "–" + reign.endYear() + ")";
-            javafx.scene.control.Tooltip.install(bar, new javafx.scene.control.Tooltip(tooltipText));
-            javafx.scene.control.Tooltip.install(name, new javafx.scene.control.Tooltip(tooltipText));
-
-            canvas.getChildren().addAll(bar, name);
-            i++;
-        }
-    }
-
-    private static void plotHistoricalEvents(List<HistoricalEvent> historicalEvents, Pane canvas) {
-        int i = 0;
-        //addGroupLabel(12, "Historical Events", canvas);
+        addGroupLabel(12, "Historical Events", labelPane);
         addGroupLine(12, canvas);
 
         historicalEvents.sort(Comparator.comparing(HistoricalEvent::year)
@@ -272,7 +271,7 @@ public class TimelineApp extends Application {
             Rectangle bar = new Rectangle(x, y, width, 28);
             bar.setArcWidth(8);
             bar.setArcHeight(8);
-            bar.setFill(Color.STEELBLUE);
+            bar.setFill(Color.DARKKHAKI);
 
             Label name = new Label(historicalEvent.event());
             name.setTextFill(Color.WHITE);
